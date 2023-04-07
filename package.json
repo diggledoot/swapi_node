@@ -1,14 +1,14 @@
 {
   "name": "swapi",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Versa Assessment 2023",
+  "main": "target/app.js",
   "scripts": {
     "build": "npx tsc --project ./tsconfig.json",
     "start": "node target/app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "diggledoot",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.15.11",
