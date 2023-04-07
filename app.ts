@@ -8,11 +8,12 @@ import {
   removeGenderProperty,
 } from "./character_utils";
 
-const SWAPI_URL = "https://swapi.dev/api/people/";
+const SWAPI_PEOPLE_ENDPOINT: string = "https://swapi.dev/api/people/";
+const FILE_NAME: string = "./output.json";
 
 async function main() {
   let result: object[] = [];
-  const data: Character[] = await getCharacters(SWAPI_URL);
+  const data: Character[] = await getCharacters(SWAPI_PEOPLE_ENDPOINT);
 
   if (!data) {
     console.error("No data returned!");
@@ -47,11 +48,7 @@ async function main() {
     result.push(jsonObject);
   });
 
-  fs.writeFileSync(
-    "./output.json",
-    JSON.stringify(result, null, "\t"),
-    "utf-8"
-  );
+  fs.writeFileSync(FILE_NAME, JSON.stringify(result, null, "\t"), "utf-8");
 }
 
 main();
