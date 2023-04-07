@@ -11,7 +11,7 @@ import {
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
 async function main() {
-  let result: any = [];
+  let result: object[] = [];
   const data: Character[] = await getCharacters(SWAPI_URL);
 
   if (!data) {

@@ -1,4 +1,4 @@
-async function fetchFromURL(url: string): Promise<any> {
+async function fetchFromURL(url: string): Promise<APIResponse> {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to pull data from ${url}!`);
@@ -7,7 +7,7 @@ async function fetchFromURL(url: string): Promise<any> {
 }
 
 function mapDataToCharacter(data: any): Character[] {
-  return data.results.map((character: any) => {
+  return data.results.map((character: RawCharacter) => {
     return {
       name: character.name,
       height: character.height,
@@ -20,7 +20,7 @@ export async function getCharacters(url: string): Promise<Character[]> {
   let result: Character[] = [];
 
   try {
-    let data = await fetchFromURL(url);
+    let data = await fetchFromURL(url); //returns a Promise which needs to be awaited
 
     while (data) {
       let characters = mapDataToCharacter(data);
@@ -30,7 +30,7 @@ export async function getCharacters(url: string): Promise<Character[]> {
       if (data.next) {
         data = await fetchFromURL(data.next);
       } else {
-        data = null;
+        break;
       }
     }
   } catch (error) {
