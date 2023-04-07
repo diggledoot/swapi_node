@@ -13,13 +13,13 @@ function mapDataToCharacter(data: any): Character[] {
 }
 
 export async function getCharacters(url: string): Promise<Character[]> {
-  let result: Character[] = [];
+  const result: Character[] = [];
 
   try {
     let data = await fetchFromURL(url);
 
     while (data) {
-      let characters = mapDataToCharacter(data);
+      const characters = mapDataToCharacter(data);
 
       result.push(...characters);
 
@@ -41,7 +41,7 @@ export function sortGender(
   characters: Character[],
   gender: string
 ): Character[] {
-  let result: Character[] = [];
+  const result: Character[] = [];
 
   characters.forEach((character) => {
     if (character.gender === gender) {
@@ -52,7 +52,7 @@ export function sortGender(
 }
 
 export function filterWithHeight(characters: Character[]): Character[] {
-  let result: Character[] = [];
+  const result: Character[] = [];
   characters.forEach((character) => {
     if (character.height !== NO_HEIGHT) {
       result.push(character);
@@ -62,7 +62,7 @@ export function filterWithHeight(characters: Character[]): Character[] {
 }
 
 export function filterNoHeight(characters: Character[]): Character[] {
-  let result: Character[] = [];
+  const result: Character[] = [];
   characters.forEach((character) => {
     if (character.height === NO_HEIGHT) {
       result.push(character);
@@ -72,7 +72,7 @@ export function filterNoHeight(characters: Character[]): Character[] {
 }
 
 export function extractGender(characters: Character[]): string[] {
-  let result: string[] = [];
+  const result: string[] = [];
   characters.forEach((character) => {
     if (result.indexOf(character.gender) === -1) {
       result.push(character.gender);
@@ -83,7 +83,7 @@ export function extractGender(characters: Character[]): string[] {
 }
 
 export function removeGenderProperty(characters: Character[]): object[] {
-  let result: object[] = [];
+  const result: object[] = [];
   characters.forEach((character: Character) => {
     result.push({
       name: character.name,
