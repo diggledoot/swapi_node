@@ -6,7 +6,7 @@ import {
   filterWithHeight,
   filterNoHeight,
   removeGenderProperty,
-} from "./utils";
+} from "./character_utils";
 
 const SWAPI_URL = "https://swapi.dev/api/people/";
 
