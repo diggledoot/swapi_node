@@ -1,5 +1,7 @@
 import { fetchFromURL } from "./helper";
 
+const NO_HEIGHT: string = "unknown";
+
 function mapDataToCharacter(data: any): Character[] {
   return data.results.map((character: RawCharacter) => {
     return {
@@ -14,7 +16,7 @@ export async function getCharacters(url: string): Promise<Character[]> {
   let result: Character[] = [];
 
   try {
-    let data = await fetchFromURL(url); //returns a Promise which needs to be awaited
+    let data = await fetchFromURL(url);
 
     while (data) {
       let characters = mapDataToCharacter(data);
@@ -52,7 +54,7 @@ export function sortGender(
 export function filterWithHeight(characters: Character[]): Character[] {
   let result: Character[] = [];
   characters.forEach((character) => {
-    if (character.height !== "unknown") {
+    if (character.height !== NO_HEIGHT) {
       result.push(character);
     }
   });
@@ -62,7 +64,7 @@ export function filterWithHeight(characters: Character[]): Character[] {
 export function filterNoHeight(characters: Character[]): Character[] {
   let result: Character[] = [];
   characters.forEach((character) => {
-    if (character.height === "unknown") {
+    if (character.height === NO_HEIGHT) {
       result.push(character);
     }
   });
