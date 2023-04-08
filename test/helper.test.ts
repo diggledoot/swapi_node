@@ -1,6 +1,6 @@
-import { describe, expect, test, jest } from "@jest/globals";
-import { fetchFromURL } from "./helper";
-import { SWAPI_PEOPLE_ENDPOINT } from "./app";
+import { describe, expect, test } from "@jest/globals";
+import { fetchFromURL } from "../src/helper";
+import { SWAPI_PEOPLE_ENDPOINT } from "../src/app";
 
 describe("helper module", () => {
   test("get a success response from fetchFromURL", async () => {

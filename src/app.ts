@@ -7,6 +7,7 @@ import {
   filterNoHeight,
   removeGenderProperty,
 } from "./character_utils";
+import { Character } from "./models";
 
 export const SWAPI_PEOPLE_ENDPOINT: string = "https://swapi.dev/api/people/";
 const FILE_NAME: string = "./output.json";

@@ -1,3 +1,4 @@
+import { APIResponse } from "./models";
 export async function fetchFromURL(url: string): Promise<APIResponse> {
   const response = await fetch(url);
   if (!response.ok) {

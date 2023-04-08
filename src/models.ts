@@ -1,17 +1,17 @@
-interface Character {
+export interface Character {
   name: string;
   height: string;
   gender: string;
 }
 
-interface APIResponse {
+export interface APIResponse {
   count: number;
   next: string;
   previous: string;
   results: RawCharacter[];
 }
 
-interface RawCharacter {
+export interface RawCharacter {
   name: string;
   birth_year: string;
   eye_color: string;
