@@ -20,9 +20,9 @@ export async function getCharacters(url: string): Promise<Character[]> {
     let data: APIResponse = await fetchFromURL(url);
 
     while (data) {
-      const characters = mapDataToCharacter(data);
+      const characters: Character[] = mapDataToCharacter(data);
 
-      result.push(...characters);
+      result.push(...characters); //this concats the created array into result
 
       if (data.next) {
         data = await fetchFromURL(data.next);
