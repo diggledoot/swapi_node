@@ -1,6 +1,6 @@
 # Versa Assessment
 
-Requirements:
+Requirements to run:
 
 1.  Ensure that you have at least node version v18.15.0 installed on your computer.
 2.  Prefer if you're using VSCode code editor to run this project properly.
