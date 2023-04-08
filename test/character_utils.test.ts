@@ -5,6 +5,7 @@ import {
   filterWithHeight,
   getCharacters,
   mapDataToCharacter,
+  removeGenderProperty,
   sortGender,
 } from "../src/character_utils";
 import { APIResponse, Character } from "../src/models";
@@ -85,7 +86,7 @@ describe("character_utils module", () => {
     expect(result).toStrictEqual(expectedResponse);
   });
 
-  //This one will console.error but that is expected
+  //This one will show a console.error but that is expected
   test("test getCharacter fail response", async () => {
     const url = "http://example.com/api/endpoint/";
     const data = await getCharacters(url);
@@ -135,6 +136,21 @@ describe("character_utils module", () => {
   test("test extractGender", () => {
     const expectedOutput: string[] = ["female", "male"];
     const result = extractGender(MOCK_INPUT);
+    expect(result).toStrictEqual(expectedOutput);
+  });
+
+  test("test removeGenderProperty", () => {
+    const expectedOutput: object[] = [
+      {
+        name: "Lila",
+        height: "170",
+      },
+      {
+        name: "Billy",
+        height: "unknown",
+      },
+    ];
+    const result = removeGenderProperty(MOCK_INPUT);
     expect(result).toStrictEqual(expectedOutput);
   });
 });
