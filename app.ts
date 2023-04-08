@@ -8,7 +8,7 @@ import {
   removeGenderProperty,
 } from "./character_utils";
 
-const SWAPI_PEOPLE_ENDPOINT: string = "https://swapi.dev/api/people/";
+export const SWAPI_PEOPLE_ENDPOINT: string = "https://swapi.dev/api/people/";
 const FILE_NAME: string = "./output.json";
 
 async function main() {

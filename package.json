@@ -5,7 +5,8 @@
   "main": "target/app.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node target/app.js"
+    "start": "node target/app.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "diggledoot",
@@ -13,5 +14,9 @@
   "dependencies": {
     "@types/node": "^18.15.11",
     "typescript": "^5.0.3"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.5.0",
+    "ts-jest": "^29.1.0"
   }
 }
