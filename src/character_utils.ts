@@ -1,8 +1,9 @@
 import { fetchFromURL } from "./helper";
+import { APIResponse, Character, RawCharacter } from "./models";
 
 const NO_HEIGHT: string = "unknown";
 
-function mapDataToCharacter(data: any): Character[] {
+export function mapDataToCharacter(data: APIResponse): Character[] {
   return data.results.map((character: RawCharacter) => {
     return {
       name: character.name,
@@ -16,7 +17,7 @@ export async function getCharacters(url: string): Promise<Character[]> {
   const result: Character[] = [];
 
   try {
-    let data = await fetchFromURL(url);
+    let data: APIResponse = await fetchFromURL(url);
 
     while (data) {
       const characters = mapDataToCharacter(data);
