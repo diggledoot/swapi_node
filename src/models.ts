@@ -1,14 +1,13 @@
-export interface Character
-  extends Pick<RawCharacter, "name" | "height" | "gender"> {}
+export type Character = Pick<RawCharacter, "name" | "height" | "gender">;
 
-export interface APIResponse {
+export type APIResponse = {
   count: number;
   next: string;
   previous: string;
   results: RawCharacter[];
-}
+};
 
-export interface RawCharacter {
+export type RawCharacter = {
   name: string;
   height: string;
   gender: string;
@@ -25,4 +24,4 @@ export interface RawCharacter {
   url: string;
   created: string;
   edited: string;
-}
+};
