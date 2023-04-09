@@ -1,8 +1,5 @@
-export interface Character {
-  name: string;
-  height: string;
-  gender: string;
-}
+export interface Character
+  extends Pick<RawCharacter, "name" | "height" | "gender"> {}
 
 export interface APIResponse {
   count: number;
@@ -11,7 +8,10 @@ export interface APIResponse {
   results: RawCharacter[];
 }
 
-export interface RawCharacter extends Character {
+export interface RawCharacter {
+  name: string;
+  height: string;
+  gender: string;
   birth_year: string;
   eye_color: string;
   hair_color: string;
