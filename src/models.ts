@@ -11,13 +11,10 @@ export interface APIResponse {
   results: RawCharacter[];
 }
 
-export interface RawCharacter {
-  name: string;
+export interface RawCharacter extends Character {
   birth_year: string;
   eye_color: string;
-  gender: string;
   hair_color: string;
-  height: string;
   mass: string;
   skin_color: string;
   homeworld: string;
