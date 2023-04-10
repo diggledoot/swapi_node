@@ -4,5 +4,6 @@ export async function fetchFromURL(url: string): Promise<APIResponse> {
   if (!response.ok) {
     throw new Error(`Failed to pull data from ${url}!`);
   }
-  return response.json();
+  const result: APIResponse = await response.json();
+  return result;
 }
