@@ -21,27 +21,28 @@ async function main() {
     return;
   }
 
-  const genders = extractGender(data);
+  const genders: string[] = extractGender(data);
 
   genders.forEach((gender: string) => {
-    const characters = sortGender(data, gender);
+    const characters: Character[] = sortGender(data, gender);
 
-    const charactersWithHeight = filterWithHeight(characters);
+    const charactersWithHeight: Character[] = filterWithHeight(characters);
 
     charactersWithHeight.sort(
       (a, b) => parseInt(a.height) - parseInt(b.height)
     );
 
-    const charactersNoHeight = filterNoHeight(characters);
+    const charactersNoHeight: Character[] = filterNoHeight(characters);
 
     charactersNoHeight.sort((a, b) => (a.name < b.name ? -1 : 1));
 
-    const mergedCharacterArray =
+    const mergedCharacterArray: Character[] =
       charactersWithHeight.concat(charactersNoHeight);
 
-    const finalCharacterArray = removeGenderProperty(mergedCharacterArray);
+    const finalCharacterArray: object[] =
+      removeGenderProperty(mergedCharacterArray);
 
-    const jsonObject = {
+    const jsonObject: object = {
       gender: gender,
       characters: finalCharacterArray,
     };
