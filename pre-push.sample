@@ -7,7 +7,7 @@ if [ -n "$(git status --porcelain)" ]; then
     exit 1
 fi
 
-npm test
+npm run test
 if [ $? -ne 0 ];then
     echo "Test failed. Aborting push..."
     exit 1
