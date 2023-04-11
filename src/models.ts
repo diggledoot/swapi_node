@@ -1,13 +1,13 @@
 export type Character = Pick<RawCharacter, 'name' | 'height' | 'gender'>
 
-export type APIResponse = {
+export interface APIResponse {
   count: number;
   next: string;
   previous: string;
   results: RawCharacter[];
 }
 
-export type RawCharacter = {
+export interface RawCharacter {
   name: string;
   height: string;
   gender: string;
