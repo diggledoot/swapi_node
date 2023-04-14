@@ -1,4 +1,17 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+echo "Running pre-push checks!"
+
+if [ -n "$(git status --porcelain)" ]; then
+    echo "There are uncommitted files! Aborting push..."
+    exit 1
+fi
+
 npm run test
+if [ $? -ne 0 ];then
+    echo "Test failed. Aborting push..."
+    exit 1
+fi
+
+echo "Pre-push checks complete! Pushing!"
