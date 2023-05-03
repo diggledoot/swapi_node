@@ -1,4 +1,4 @@
-# Versa Assessment
+# SWAPI Node
 
 Requirements to run:
 
