@@ -1,55 +1,56 @@
-import fs from 'fs';
+import fs from 'fs'
 import {
-	getCharacters,
-	extractGender,
-	sortGender,
-	filterWithHeight,
-	filterNoHeight,
-	removeGenderProperty
-} from './character_utils';
-import { Character } from './models';
+  getCharacters,
+  extractGender,
+  sortGender,
+  filterWithHeight,
+  filterNoHeight,
+  removeGenderProperty
+} from './character_utils'
+import { Character } from './models'
 
-export const SWAPI_PEOPLE_ENDPOINT = 'https://swapi.dev/api/people/';
-const FILE_NAME = './output.json';
+export const SWAPI_PEOPLE_ENDPOINT = 'https://swapi.dev/api/people/'
+const FILE_NAME = './output.json'
 
 async function main () {
-	const result: object[] = [];
+  const result: object[] = []
 
-	const data: Character[] = await getCharacters(SWAPI_PEOPLE_ENDPOINT);
+  console.time('getCharacters')
+  const data: Character[] = await getCharacters(SWAPI_PEOPLE_ENDPOINT)
+  console.timeEnd('getCharacters')
+  if (!data) {
+    console.error('No data returned!')
+    return
+  }
 
-	if (!data) {
-		console.error('No data returned!');
-		return;
-	}
+  const genders: string[] = extractGender(data)
 
-	const genders: string[] = extractGender(data);
+  genders.forEach((gender: string) => {
+    const characters: Character[] = sortGender(data, gender)
 
-	genders.forEach((gender: string) => {
-		const characters: Character[] = sortGender(data, gender);
+    const charactersWithHeight: Character[] = filterWithHeight(characters)
 
-		const charactersWithHeight: Character[] = filterWithHeight(characters);
+    charactersWithHeight.sort((a, b) => parseInt(a.height) - parseInt(b.height))
 
-		charactersWithHeight.sort((a, b) => parseInt(a.height) - parseInt(b.height));
+    const charactersNoHeight: Character[] = filterNoHeight(characters)
 
-		const charactersNoHeight: Character[] = filterNoHeight(characters);
+    charactersNoHeight.sort()
 
-		charactersNoHeight.sort();
+    const mergedCharacterArray: Character[] =
+      charactersWithHeight.concat(charactersNoHeight)
 
-		const mergedCharacterArray: Character[] =
-      charactersWithHeight.concat(charactersNoHeight);
+    const finalCharacterArray: object[] =
+      removeGenderProperty(mergedCharacterArray)
 
-		const finalCharacterArray: object[] =
-      removeGenderProperty(mergedCharacterArray);
+    const jsonObject: object = {
+      gender,
+      characters: finalCharacterArray
+    }
 
-		const jsonObject: object = {
-			gender,
-			characters: finalCharacterArray
-		};
+    result.push(jsonObject)
+  })
 
-		result.push(jsonObject);
-	});
-
-	fs.writeFileSync(FILE_NAME, JSON.stringify(result, null, '\t'), 'utf-8');
+  fs.writeFileSync(FILE_NAME, JSON.stringify(result, null, '\t'), 'utf-8')
 }
 
-main();
+main()
